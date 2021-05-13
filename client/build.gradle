@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-feign
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign', version: '1.4.7.RELEASE'
+// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '3.0.2'
+// https://mvnrepository.com/artifact/org.json/json
+    implementation group: 'org.json', name: 'json', version: '20210307'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'LoginForm'
+        )
+    }
+}
