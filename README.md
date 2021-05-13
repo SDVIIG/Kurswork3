@@ -1,1 +1,1 @@
-# Kurswork3
+Для запуска нужна IDE c SDK 11
